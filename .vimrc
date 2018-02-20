@@ -110,3 +110,30 @@ let g:airline_powerline_fonts=1
   nnoremap <leader>go :Git checkout<Space>
   nnoremap <leader>gps :Dispatch! git push<CR>
   nnoremap <leader>gpl :Dispatch! git pull<CR>
+
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap t :enew<cr>
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+nmap <leader>d :bdelete<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
+
+" wait for mapkeys
+set notimeout
+set nottimeout
+
+" expander for emmet
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
