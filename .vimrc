@@ -38,7 +38,7 @@ set expandtab       " use spaces instead of tabs
 set autoindent      " autoindent based on line above, works most of the time
 set smartindent     " smarter indent for C-like languages
 set shiftwidth=4    " when reading, tabs are 4 spaces
-set softtabstop=4   " in insert mode, tabs are 4 spaces
+set softtabstop=2   " in insert mode, tabs are 4 spaces
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -112,6 +112,25 @@ let g:airline_powerline_fonts=1
   nnoremap <leader>gpl :Dispatch! git pull<CR>
 
 
+
+" wait for mapkeys
+set notimeout
+set nottimeout
+
+" expander for emmet
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+"tabs
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" This allows buffers to be hidden if you've modified a buffer.
+" This is almost a must if you wish to use buffers in this way.
+set hidden
+
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
 nmap t :enew<cr>
@@ -131,9 +150,3 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
-" wait for mapkeys
-set notimeout
-set nottimeout
-
-" expander for emmet
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
