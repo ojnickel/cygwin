@@ -150,3 +150,16 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
+let g:user_emmet_settings = {
+  \  'css' : {
+  \    'extends' : 'css',
+  \    'filters' : 'fc',
+  \    'snippets' : {
+  \             'mqm': "@media screen and (min-width:${1}) {\n\t|\n}",
+  \    		'mqx': "@media screen and (max-width:${1}) {\n\t|\n}",
+  \    		'mqmx': "@media screen and (min-width:${1}) and (max-width:${1}) {\n\t|\n}",
+  \    		'by': "body {\n\t${1} |\n}",
+  \	},
+  \
+  \  },
+  \}
