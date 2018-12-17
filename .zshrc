@@ -1,3 +1,5 @@
+# 256 colors
+export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +10,22 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="my-agnoster"
+#ZSH_THEME=>"dst"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+#ZSH_THEME="my-agnoster"
+
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir vcs )
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_TIME_BACKGROUND="black"
+POWERLEVEL9K_TIME_FOREGROUND="249"
+POWERLEVEL9K_TIME_FORMAT="\UF43A %D{%I:%M  \UF133  %d.%m.%y}"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -61,6 +78,9 @@ ZSH_THEME="my-agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh-syntax-highlighting
+  zsh-autosuggestions  
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,6 +113,36 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-# 256 colors
-export TERM=xterm-256color
+alias reboot="shutdown -r -t 0"
+alias halt="shutdown -s -t 0"
+# xampp start/stop
+alias xampp_stop="/cygdrive/c/xampp/xampp_stop.exe"
+alias xampp_start="/cygdrive/c/xampp/xampp_start.exe"
+alias xampp_restart="xampp_stop && xampp_start"
+alias sudo="cygstart --action=runas"
+alias chrome="'/cygdrive/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'"
+#copy multiple files and rename them
+cpf () { #input dir, file (or part of the name), destination, name for file
+  #for f in $1/+([^_])$2* ;do
+  #find $1 -type f -iname '*$2*'  | while read -r f;do
+  for f in $1/*$2* ;do
+      #echo 'extension="${f##*.}"'
+      #echo 'filename="${f%.*}"'
+      #w/o path
+      filename="${f##*/}"
+      nf="${filename/$2/$4}"
+      echo "$f -> $3/$nf"
+      cp $f $3/$nf
+  done
+}
+#copy all files with a given name and copy them to a output dir with .old
+backup () { #input dir, search pattern, output dir
+  for i in $1/*$2* ;do
+    #stripp path
+      f="${i##*/}"
+      nf="$f.old"
+      echo "$i -> $3/$nf"
+      cp $i $3/$nf
+  done
+}
+export PATH=/cygdrive/c/xampp/php:$PATH
