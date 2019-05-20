@@ -1,3 +1,4 @@
+setopt extendedglob
 # 256 colors
 export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
@@ -16,6 +17,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir vcs )
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
@@ -146,3 +148,11 @@ backup () { #input dir, search pattern, output dir
   done
 }
 export PATH=/cygdrive/c/xampp/php:$PATH
+bup() { cp $1 /cygdrive/c/backup/test/$2 -v }
+#mkdir and cd into it
+mkcd() { mkdir -p $1; cd $1 }
+
+alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/   /'"'"' -e '"'"'s/-/|/'"'"
+
+alias ld="ls -d */"
+
