@@ -1,3 +1,4 @@
+set magic
 set nobackup       "no backup files
 set nowritebackup  "only in case you don't want a backup file while editing
 set noswapfile     "no swap files
@@ -19,13 +20,15 @@ cno <c-v> <c-r>+
 exe 'ino <script> <C-V>' paste#paste_cmd['i']
 
 " set mapleader
-let mapleader = ","
+let mapleader = "-"
 
 " exit
-nmap <leader>q :q!<CR>
+nmap <leader>q :qa!<CR>
 " save
 nmap <leader>w :w<CR>
-nmap <leader>x :x<CR>
+" save and quit all?
+nmap <leader>x :xa<CR>
+
 
 set nocompatible
 filetype off
@@ -47,15 +50,19 @@ call vundle#rc()
 " For GitHub repos, you specify plugins using the
 " 'user/repository' format
 
+ 
 Plugin 'gmarik/vundle'
+Plugin 'wsdjeg/vim-fetch'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'scrooloose/syntastic'
 Plugin 'yggdroot/indentline'
 " git
 Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'enricobacis/vim-airline-clock'
 " -- Web Development
@@ -67,6 +74,8 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'ap/vim-css-color'
 Plugin 'tpope/vim-haml'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'jiangmiao/auto-pairs'
 
 "
 " We could also add repositories with a ".git" extension
@@ -83,8 +92,18 @@ filetype plugin indent on
 " Give a shortcut key to NERD Tree
 map <F2> :NERDTreeToggle<CR>
 
-set background=dark
-colorscheme molokai
+set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme atom
+set background=light
+"colorscheme one
+"set background=dark
+colorscheme solarized8
+"colorscheme gruvbox
+"colorscheme molokai
+"set background=light
+"colorscheme scheakur
 
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 
@@ -125,7 +144,7 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+"let g:airline#extensions#tabline#fnamemod = ':t'
 
 " This allows buffers to be hidden if you've modified a buffer.
 " This is almost a must if you wish to use buffers in this way.
@@ -163,3 +182,38 @@ let g:user_emmet_settings = {
   \
   \  },
   \}
+
+if &diff
+    nnoremap <leader>p [c
+    nnoremap <leader>n ]c
+endif
+
+set mouse=a
+"auto start NEDTree
+"autocmd vimenter * NERDTree
+"" Jump to the main window.
+"autocmd VimEnter * wincmd p
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"switching panels in NERDtree
+"cycle
+noremap <F9> <C-w><C-w> 
+"right
+noremap <leader>k <C-w><C-l>
+"left
+noremap <leader>j <C-w><C-h>
+
+nnoremap <leader><Up>    <C-w>+
+nnoremap <leader><Down>  <C-w>-
+nnoremap <leader><Left>  <C-w><
+nnoremap <leader><Right> <C-w>>
+
+"autoccompletion
+set omnifunc=htmlcomplete#CompleteTags
+"|-> for html css w/o pressing c-x  or c-o
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
+"disable auto comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+"default window size
+let g:NERDTreeWinSize=20
+let NERDTreeMinimalUI=1
