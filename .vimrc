@@ -43,49 +43,48 @@ set smartindent     " smarter indent for C-like languages
 set shiftwidth=4    " when reading, tabs are 4 spaces
 set softtabstop=2   " in insert mode, tabs are 4 spaces
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Plugs will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
 
-" This is the Vundle package, which can be found on GitHub.
-" For GitHub repos, you specify plugins using the
-" 'user/repository' format
-
+" Declare the list of plugins.
  
-Plugin 'gmarik/vundle'
-Plugin 'wsdjeg/vim-fetch'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'rafi/awesome-vim-colorschemes'
-Plugin 'scrooloose/syntastic'
-Plugin 'yggdroot/indentline'
+Plug 'wsdjeg/vim-fetch'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'flazz/vim-colorschemes'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'scrooloose/syntastic'
+Plug 'yggdroot/indentline'
 " git
-Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'enricobacis/vim-airline-clock'
+Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'enricobacis/vim-airline-clock'
+"Plug 'valloric/youcompleteme'
 " -- Web Development
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'groenewege/vim-less'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'ap/vim-css-color'
-Plugin 'tpope/vim-haml'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'jiangmiao/auto-pairs'
+Plug 'sheerun/vim-polyglot'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'Shutnik/jshint2.vim'
+Plug 'mattn/emmet-vim'
+Plug 'kchmck/vim-coffee-script'
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'php', 'html'] }
+Plug 'groenewege/vim-less'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'digitaltoad/vim-jade'
+Plug 'ap/vim-css-color'
+Plug 'tpope/vim-haml'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
-"
-" We could also add repositories with a ".git" extension
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-" To get plugins from Vim Scripts, you can reference the plugin
-" by name as it appears on the site
-Plugin 'Buffergator'
-
+" List ends here. Plugs become visible to Vim after this call.
+call plug#end()
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
 
@@ -96,11 +95,11 @@ set termguicolors     " enable true colors support
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="dark"   " for dark version of theme
 "colorscheme atom
-set background=light
+"set background=light
 "colorscheme one
-"set background=dark
-colorscheme solarized8
-"colorscheme gruvbox
+set background=dark
+"colorscheme solarized8
+colorscheme gruvbox
 "colorscheme molokai
 "set background=light
 "colorscheme scheakur
