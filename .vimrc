@@ -58,6 +58,7 @@ Plug 'scrooloose/syntastic'
 Plug 'yggdroot/indentline'
 " git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'enricobacis/vim-airline-clock'
