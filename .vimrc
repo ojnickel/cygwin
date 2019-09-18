@@ -65,7 +65,7 @@ Plug 'enricobacis/vim-airline-clock'
 " -- Web Development
 Plug 'sheerun/vim-polyglot'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Shutnik/jshint2.vim'
 Plug 'mattn/emmet-vim'
 Plug 'kchmck/vim-coffee-script'
@@ -103,6 +103,9 @@ colorscheme gruvbox
 "colorscheme molokai
 "set background=light
 "colorscheme scheakur
+
+"Airline Theme
+let g:airline_theme='sol'
 
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 
@@ -188,6 +191,9 @@ if &diff
 endif
 
 set mouse=a
+"mouse for NERDTree
+let g:NERDTreeMouseMode=3 
+
 "auto start NEDTree
 "autocmd vimenter * NERDTree
 "" Jump to the main window.
