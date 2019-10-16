@@ -1,4 +1,4 @@
-setopt extendedglob
+setopt EXTENDED_GLOB
 # 256 colors
 export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
@@ -156,3 +156,17 @@ alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--
 
 alias ld="ls -d */"
 
+#rme -> remove al except some files
+rme () {
+    echo $@
+    i=0
+    for f in $@; do
+        mv $f ..
+    done
+    echo $#
+    echo $n
+    rm * -rvf
+    for f in $@; do
+        mv ../$f ./ -v
+    done
+}
