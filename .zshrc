@@ -14,6 +14,7 @@ export ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME=>"dst"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="my-agnoster"
+#ZSH_THEME="agnoster"
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
@@ -158,15 +159,16 @@ alias ld="ls -d */"
 
 #rme -> remove al except some files
 rme () {
-    echo $@
-    i=0
+    #echo $@
+    #i=0
     for f in $@; do
         mv $f ..
     done
-    echo $#
-    echo $n
+    #echo $#
+    #echo $n
     rm * -rvf
     for f in $@; do
-        mv ../$f ./ -v
+        mv ../$f ./ 
     done
+
 }
